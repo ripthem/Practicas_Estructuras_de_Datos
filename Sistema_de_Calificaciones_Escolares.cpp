@@ -20,8 +20,14 @@ int main() {
         case 1: {
         string nombre;
         int edad;
-        float calificacion1, calificacion2, calificacion3;
+        int n;
+        float calificacion;
+        float suma = 0; 
         float promedio;
+        int aprobadas = 0;
+        int reprobadas = 0;
+        float mayor, menor; 
+        
 
         cout << "Registro de Estudiante" << endl;
         cout << "Ingrese el nombre del estudiante: ";
@@ -35,30 +41,47 @@ int main() {
             return 1;
         }
 
-        cout << "Ingrese la primera calificacion: ";
-        cin >> calificacion1;
+        cout << "Cuantas calificaciones desea registrar? ";
+        cin >> n;
 
-        cout << "Ingrese la segunda calificacion: ";
-        cin >> calificacion2;
+        for (int i = 1; i <= n; i++) {
+        cout << "Ingrese la calificacion " << i << ": ";
+            cin >> calificacion;
 
-        cout << "Ingrese la tercera calificacion: ";
-        cin >> calificacion3;
-
-
-        if (calificacion1 < 0 || calificacion1 > 10 ||
-            calificacion2 < 0 || calificacion2 > 10 ||
-            calificacion3 < 0 || calificacion3 > 10) {
+        if (calificacion < 0 || calificacion > 10) {
             cout << "Error: Calificaciones invalidas." << endl;
             return 1;
         }
 
-        promedio = (calificacion1 + calificacion2 + calificacion3) / 3.0;
+        if (i == 1) {
+            mayor = calificacion;
+            menor = calificacion;
+        } else {
+            if (calificacion > mayor) mayor = calificacion;
+            if (calificacion < menor) menor = calificacion;
+        }
+
+        if (calificacion >= 6) {
+            aprobadas++;
+        } else {
+            reprobadas++; 
+        }
+
+        suma += calificacion; 
+
+    }
+
+        promedio = suma / n;
 
         cout << "RESUMEN DEL ESTUDIANTE" << endl;
         cout << "Nombre: " << nombre << endl;
         cout << "Edad: " << edad << endl;
-        cout << "Calificaciones: " << calificacion1 << ", " << calificacion2 << ", " << calificacion3 << endl;
         cout << "Promedio: " << promedio << endl;
+        cout << "Calificacion mas alta: " << mayor << endl;
+        cout << "Calificacion mas baja: " << menor << endl;
+        cout << "Calificaciones aprobatorias: " << aprobadas << endl;
+        cout << "Calificaciones reprobatorias: " << reprobadas << endl;
+
 
         cout << "Estado: ";
         if (promedio >= 9.0) {
