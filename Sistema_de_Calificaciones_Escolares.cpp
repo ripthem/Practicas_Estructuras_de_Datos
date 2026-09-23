@@ -26,24 +26,33 @@ int main() {
         float promedio;
         int aprobadas = 0;
         int reprobadas = 0;
-        float mayor, menor; 
+        float mayor = 10, menor = 0; 
         
 
         cout << "Registro de Estudiante" << endl;
         cout << "Ingrese el nombre del estudiante: ";
         getline(cin, nombre);
 
-        cout << "Ingrese la edad: ";
-        cin >> edad;
+            while (true) {
+                cout << "Ingrese la edad: ";
+                if (cin >> edad && edad >= 0 && edad <= 120) {
+                    break;
+            }
+            cout << "Error: Edad invalida, favor de ingresar un numero entre 0 y 120." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }    
 
-        if (edad < 0 || edad > 120) {
-            cout << "Error: Edad invalida. " << endl;
-            return 1;
+        while (true) {
+            cout << "Cuantas calificaciones desea registrar (1-3)? ";
+            if (cin >> n && n >= 1 && n <= 3) {
+                break;
+            }
+            cout << "Error: Solo se pueden registrar de 1 a 3 calificaciones." << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        
         }
-
-        cout << "Cuantas calificaciones desea registrar? ";
-        cin >> n;
-
         for (int i = 1; i <= n; i++) {
         cout << "Ingrese la calificacion " << i << ": ";
             cin >> calificacion;
